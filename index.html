@@ -16,6 +16,10 @@
     --code-bg: oklch(0.16 0.01 240);
     --code-text: oklch(0.9 0.03 195);
     --inline-code-bg: oklch(0.93 0.01 195);
+    --success: oklch(0.6 0.15 145);
+    --success-tint: oklch(0.96 0.03 145);
+    --error: oklch(0.58 0.19 25);
+    --error-tint: oklch(0.96 0.03 25);
   }
 
   * { box-sizing: border-box; }
@@ -123,6 +127,15 @@
     margin: 36px 0 14px;
   }
 
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin: 0 0 10px;
+  }
+
   p {
     font-size: 15.5px;
     line-height: 1.7;
@@ -167,7 +180,7 @@
     background: var(--accent-tint);
     padding: 22px 26px;
     border-radius: 10px;
-    margin: 36px 0 40px;
+    margin: 36px 0 32px;
   }
 
   .recap-title {
@@ -177,6 +190,212 @@
     text-transform: uppercase;
     color: oklch(0.45 0.1 195);
     margin-bottom: 10px;
+  }
+
+  /* Check-in questions */
+
+  .checkin {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin: 0 0 40px;
+  }
+
+  .checkin-label {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .checkin-question {
+    font-weight: 600;
+    font-size: 15.5px;
+    margin: 0 0 16px;
+  }
+
+  .checkin-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .checkin-option {
+    text-align: left;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    cursor: pointer;
+  }
+
+  .checkin-option:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  .checkin-option:disabled {
+    cursor: default;
+  }
+
+  .checkin-option.correct {
+    border-color: var(--success);
+    background: var(--success-tint);
+    color: oklch(0.35 0.1 145);
+  }
+
+  .checkin-option.incorrect {
+    border-color: var(--error);
+    background: var(--error-tint);
+    color: oklch(0.4 0.14 25);
+  }
+
+  .checkin-feedback {
+    margin: 14px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .checkin-feedback.correct { color: var(--success); }
+  .checkin-feedback.incorrect { color: var(--error); }
+
+  /* Simulator */
+
+  .simulator {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 26px;
+    margin: 20px 0 40px;
+  }
+
+  .sim-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .sim-toggle button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+
+  .sim-toggle button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .sim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .sim-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+
+  .sim-attr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+  }
+
+  .sim-attr:last-child { border-bottom: none; }
+
+  .sim-attr .val { color: var(--text-muted); }
+
+  .sim-tag {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .sim-tag.inherited { background: var(--accent-tint); color: oklch(0.45 0.1 195); }
+  .sim-tag.own { background: oklch(0.94 0.04 90); color: oklch(0.5 0.1 90); }
+
+  .sim-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sim-actions button {
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+
+  .sim-actions button:hover { border-color: var(--accent); }
+
+  .sim-console {
+    margin-top: 22px;
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.8;
+    min-height: 70px;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+
+  .sim-console .placeholder { opacity: 0.45; }
+  .sim-console .line-tag { opacity: 0.55; margin-left: 8px; }
+
+  .sim-reset {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Quiz */
+
+  .quiz-score {
+    border: 1px solid var(--accent);
+    background: var(--accent-tint);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin: 0 0 32px;
+    font-weight: 600;
+    font-size: 15px;
   }
 
   .lesson-nav {
@@ -214,6 +433,10 @@
     background: oklch(0.85 0.01 240);
     color: var(--text-muted);
   }
+
+  @media (max-width: 560px) {
+    .sim-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -226,7 +449,7 @@
 <main>
 
   <section class="lesson" data-title="The Problem">
-    <div class="eyebrow">01 / 03</div>
+    <div class="eyebrow">01 / 05</div>
     <h1>Why We Need Inheritance</h1>
     <p>Real programs often need to represent several kinds of objects that are mostly alike. Take a library system: it might serve two types of members, students and staff. Both need a name, an ID, a department, and a borrowing quota — but a student also has a class group, and a staff member has a designation.</p>
 
@@ -258,6 +481,18 @@ public class Staff {
       </ul>
     </div>
 
+    <div class="checkin" data-checkin>
+      <div class="checkin-label">Check your understanding</div>
+      <div class="checkin-question">In the naive approach, what's the main problem with writing separate <code>Student</code> and <code>Staff</code> classes?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button">They can't both exist in the same program</button>
+        <button class="checkin-option" type="button" data-correct>Shared fields and methods end up duplicated in both classes</button>
+        <button class="checkin-option" type="button">Java doesn't allow two classes to have fields with the same name</button>
+        <button class="checkin-option" type="button">Objects can't be created from either class</button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
     <div class="lesson-nav">
       <button class="prev-btn" type="button">&larr; Course start</button>
       <button class="next-btn" type="button">Next: Superclasses &amp; Subclasses &rarr;</button>
@@ -265,7 +500,7 @@ public class Staff {
   </section>
 
   <section class="lesson" data-title="Superclass &amp; Subclass">
-    <div class="eyebrow">02 / 03</div>
+    <div class="eyebrow">02 / 05</div>
     <h1>Superclasses and Subclasses</h1>
     <p>A more efficient way is to pull every shared characteristic into one class, called a <strong>superclass</strong>, and let the more specific classes build on top of it as <strong>subclasses</strong>. For the library example, that shared class is <code>Member</code>: it holds the name, ID, department, and quota that every member needs, along with the methods that work on them.</p>
 
@@ -300,6 +535,18 @@ public class Staff extends Member {
       </ul>
     </div>
 
+    <div class="checkin" data-checkin>
+      <div class="checkin-label">Check your understanding</div>
+      <div class="checkin-question">Which keyword lets a Java class inherit from another class?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button">implements</button>
+        <button class="checkin-option" type="button">inherits</button>
+        <button class="checkin-option" type="button" data-correct>extends</button>
+        <button class="checkin-option" type="button">super</button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
     <div class="lesson-nav">
       <button class="prev-btn" type="button">&larr; Previous</button>
       <button class="next-btn" type="button">Next: Inheritance in Action &rarr;</button>
@@ -307,7 +554,7 @@ public class Staff extends Member {
   </section>
 
   <section class="lesson" data-title="Inheritance in Action">
-    <div class="eyebrow">03 / 03</div>
+    <div class="eyebrow">03 / 05</div>
     <h1>What Gets Inherited</h1>
     <p>Once <code>Student</code> and <code>Staff</code> are defined as subclasses of <code>Member</code>, they automatically <strong>inherit</strong> every attribute and method that <code>Member</code> defines — nothing needs to be redeclared. On top of that inherited set, each subclass still has the individual fields it defined for itself.</p>
 
@@ -329,6 +576,115 @@ student.setQuota(5);                         // inherited from Member
       </ul>
     </div>
 
+    <div class="checkin" data-checkin>
+      <div class="checkin-label">Check your understanding</div>
+      <div class="checkin-question">A <code>Student</code> object calls <code>setQuota(5)</code>. Where is that method actually defined?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button">In <code>Student</code> itself</button>
+        <button class="checkin-option" type="button" data-correct>In <code>Member</code>, the superclass</button>
+        <button class="checkin-option" type="button">In <code>Staff</code></button>
+        <button class="checkin-option" type="button">It isn't defined anywhere — Java generates it automatically</button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="prev-btn" type="button">&larr; Previous</button>
+      <button class="next-btn" type="button">Next: Try It Yourself &rarr;</button>
+    </div>
+  </section>
+
+  <section class="lesson" data-title="Try It Yourself">
+    <div class="eyebrow">04 / 05</div>
+    <h1>Inheritance Simulator</h1>
+    <p>Pick a class below, then call some methods on it. Each call is tagged with where that method actually lives — <code>Member</code> or the subclass itself — so you can see inheritance happening rather than just reading about it.</p>
+
+    <div class="simulator">
+      <div class="sim-toggle" id="sim-toggle">
+        <button type="button" data-class="Student" class="active">Student</button>
+        <button type="button" data-class="Staff">Staff</button>
+      </div>
+
+      <div class="sim-grid">
+        <div class="sim-card">
+          <h3 id="sim-card-title">student object</h3>
+          <div id="sim-attrs"></div>
+        </div>
+        <div class="sim-card">
+          <h3>Available calls</h3>
+          <div class="sim-actions" id="sim-actions"></div>
+        </div>
+      </div>
+
+      <div class="sim-console" id="sim-console">
+        <div class="placeholder">// output will appear here</div>
+      </div>
+      <button class="sim-reset" type="button" id="sim-reset">Reset object</button>
+    </div>
+
+    <p>Notice that <code>studentClass</code> (or <code>designation</code> for a staff member) can only be set directly — <code>Member</code> has no field or method for it, so it isn't part of what gets inherited.</p>
+
+    <div class="checkin" data-checkin>
+      <div class="checkin-label">Check your understanding</div>
+      <div class="checkin-question">Based on the simulator, why can't <code>studentClass</code> be set through an inherited method?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button" data-correct>Because <code>Member</code> doesn't know about <code>studentClass</code> — it's only defined in <code>Student</code></button>
+        <button class="checkin-option" type="button">Because inherited methods are read-only</button>
+        <button class="checkin-option" type="button">Because <code>studentClass</code> is private to the JVM</button>
+        <button class="checkin-option" type="button">Because <code>Student</code> overrides <code>setBasics()</code></button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="prev-btn" type="button">&larr; Previous</button>
+      <button class="next-btn" type="button">Next: Final Quiz &rarr;</button>
+    </div>
+  </section>
+
+  <section class="lesson" data-title="Final Quiz">
+    <div class="eyebrow">05 / 05</div>
+    <h1>Final Quiz</h1>
+    <p>Three questions covering everything from this course. Answer them all to see your score.</p>
+
+    <div class="quiz-score" id="quiz-score">Score: 0 / 3</div>
+
+    <div class="checkin" data-checkin data-quiz>
+      <div class="checkin-label">Question 1</div>
+      <div class="checkin-question">What problem does inheritance solve in the library example?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button" data-correct>Duplicated fields and methods between <code>Student</code> and <code>Staff</code></button>
+        <button class="checkin-option" type="button">Slow performance when creating objects</button>
+        <button class="checkin-option" type="button">Java requiring every class to have a parent</button>
+        <button class="checkin-option" type="button">Naming conflicts between unrelated classes</button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
+    <div class="checkin" data-checkin data-quiz>
+      <div class="checkin-label">Question 2</div>
+      <div class="checkin-question">Which class in the example is the superclass?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button">Student</button>
+        <button class="checkin-option" type="button">Staff</button>
+        <button class="checkin-option" type="button" data-correct>Member</button>
+        <button class="checkin-option" type="button">Library</button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
+    <div class="checkin" data-checkin data-quiz>
+      <div class="checkin-label">Question 3</div>
+      <div class="checkin-question">Does <code>Staff</code> need to redeclare <code>Member</code>'s methods in order to use them?</div>
+      <div class="checkin-options">
+        <button class="checkin-option" type="button">Yes, every method must be rewritten in <code>Staff</code></button>
+        <button class="checkin-option" type="button" data-correct>No, inherited methods are used as-is</button>
+        <button class="checkin-option" type="button">Only if <code>Staff</code> overrides them</button>
+        <button class="checkin-option" type="button">Only for private methods</button>
+      </div>
+      <div class="checkin-feedback" hidden></div>
+    </div>
+
     <div class="lesson-nav">
       <button class="prev-btn" type="button">&larr; Previous</button>
       <button class="next-btn" type="button" disabled>You've completed the course</button>
@@ -338,6 +694,8 @@ student.setQuota(5);                         // inherited from Member
 </main>
 
 <script>
+  // ---- Section navigation ----
+
   const sections = Array.from(document.querySelectorAll('.lesson'));
   const stepper = document.getElementById('stepper');
   let current = 0;
@@ -369,6 +727,147 @@ student.setQuota(5);                         // inherited from Member
   }
 
   showSection(0);
+
+  // ---- Check-in / quiz questions ----
+
+  document.querySelectorAll('[data-checkin]').forEach((checkin) => {
+    const options = Array.from(checkin.querySelectorAll('.checkin-option'));
+    const feedback = checkin.querySelector('.checkin-feedback');
+
+    options.forEach((option) => {
+      option.addEventListener('click', () => {
+        if (checkin.dataset.answered) return;
+        checkin.dataset.answered = 'true';
+
+        const isCorrect = option.hasAttribute('data-correct');
+
+        options.forEach((o) => {
+          o.disabled = true;
+          if (o.hasAttribute('data-correct')) o.classList.add('correct');
+        });
+        if (!isCorrect) option.classList.add('incorrect');
+
+        feedback.hidden = false;
+        feedback.textContent = isCorrect
+          ? 'Correct!'
+          : 'Not quite — the correct answer is highlighted above.';
+        feedback.className = 'checkin-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+
+        if (isCorrect) checkin.dataset.correct = 'true';
+        updateQuizScore();
+      });
+    });
+  });
+
+  function updateQuizScore() {
+    const quizQuestions = document.querySelectorAll('[data-quiz]');
+    if (quizQuestions.length === 0) return;
+    const scoreEl = document.getElementById('quiz-score');
+    const correctCount = Array.from(quizQuestions).filter((q) => q.dataset.correct === 'true').length;
+    scoreEl.textContent = `Score: ${correctCount} / ${quizQuestions.length}`;
+  }
+
+  // ---- Inheritance simulator ----
+
+  const simState = {
+    Student: { basicsSet: false, quota: null, own: null, ownField: 'studentClass' },
+    Staff: { basicsSet: false, quota: null, own: null, ownField: 'designation' },
+  };
+  let simClass = 'Student';
+
+  const simToggle = document.getElementById('sim-toggle');
+  const simCardTitle = document.getElementById('sim-card-title');
+  const simAttrs = document.getElementById('sim-attrs');
+  const simActions = document.getElementById('sim-actions');
+  const simConsole = document.getElementById('sim-console');
+  const simReset = document.getElementById('sim-reset');
+
+  simToggle.querySelectorAll('button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      simClass = btn.dataset.class;
+      simToggle.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === btn));
+      renderSim();
+    });
+  });
+
+  simReset.addEventListener('click', () => {
+    simState[simClass] = { basicsSet: false, quota: null, own: null, ownField: simState[simClass].ownField };
+    renderSim();
+  });
+
+  function renderSim() {
+    const state = simState[simClass];
+    const varName = simClass.toLowerCase();
+
+    simCardTitle.textContent = `${varName} object`;
+
+    simAttrs.innerHTML = '';
+    const inheritedAttrs = [
+      ['name', state.basicsSet ? '"Alice"' : '—'],
+      ['id', state.basicsSet ? '"S1001"' : '—'],
+      ['department', state.basicsSet ? '"IT"' : '—'],
+      ['quota', state.quota !== null ? state.quota : '—'],
+    ];
+    inheritedAttrs.forEach(([field, val]) => {
+      simAttrs.appendChild(simAttrRow(field, val, 'inherited'));
+    });
+    simAttrs.appendChild(simAttrRow(state.ownField, state.own ?? '—', 'own'));
+
+    simActions.innerHTML = '';
+    simActions.appendChild(simActionBtn(
+      `${varName}.setBasics("Alice", "S1001", "IT")`,
+      'Member',
+      () => { state.basicsSet = true; renderSim(); }
+    ));
+    simActions.appendChild(simActionBtn(
+      `${varName}.setQuota(5)`,
+      'Member',
+      () => { state.quota = 5; renderSim(); }
+    ));
+    simActions.appendChild(simActionBtn(
+      `${varName}.getQuota()`,
+      'Member',
+      () => {},
+      state.quota === null ? '→ undefined (call setQuota first)' : `→ ${state.quota}`
+    ));
+    const ownValue = simClass === 'Student' ? '"Year 2"' : '"Senior Librarian"';
+    simActions.appendChild(simActionBtn(
+      `${varName}.${state.ownField} = ${ownValue}`,
+      simClass,
+      () => { state.own = ownValue; renderSim(); }
+    ));
+  }
+
+  function simAttrRow(field, val, kind) {
+    const row = document.createElement('div');
+    row.className = 'sim-attr';
+    row.innerHTML = `<span>${field}: <span class="val">${val}</span></span>` +
+      `<span class="sim-tag ${kind}">${kind === 'inherited' ? 'inherited' : 'own'}</span>`;
+    return row;
+  }
+
+  function simActionBtn(label, source, onClick, resultLine) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      logToConsole(label, resultLine || null, source);
+      onClick();
+    });
+    return btn;
+  }
+
+  function logToConsole(call, resultLine, source) {
+    const placeholder = simConsole.querySelector('.placeholder');
+    if (placeholder) placeholder.remove();
+    const line = document.createElement('div');
+    const tagText = source === 'Member' ? 'inherited from Member' : `defined in ${source}`;
+    line.innerHTML = `${resultLine ? resultLine : call}<span class="line-tag">// ${tagText}</span>`;
+    simConsole.appendChild(line);
+    simConsole.scrollTop = simConsole.scrollHeight;
+  }
+
+  renderSim();
 </script>
 
 </body>

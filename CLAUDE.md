@@ -23,6 +23,17 @@ authored content derived from the slides the user provides in-session.
 - **Navigation**: a top "stepper" nav lists all lessons and jumps to any
   of them; each lesson also has Prev/Next buttons at the bottom, driven
   by the same JS. Order matches the slide order.
+- **Check-in questions**: every content section (lessons + the
+  simulator) ends with one inline multiple-choice `.checkin` block
+  testing that section's key idea — never a separate quiz page. Options
+  are plain `<button>`s; the correct one carries a bare `data-correct`
+  attribute (no value needed). Clicking locks the question (all options
+  `disabled`), highlights the correct option green and a wrong pick red,
+  and shows one line of feedback — but never blocks Prev/Next. Handled
+  by one generic delegated JS block, not per-question code.
+- **Final quiz**: last section, 3 more `.checkin` blocks (same markup,
+  tagged `data-quiz`) plus a live `#quiz-score` readout that updates as
+  each is answered.
 - **No dependencies**: don't pull in CSS/JS frameworks unless asked —
   keep it readable, self-contained, and easy to open with just a browser
   (or a trivial static server).
@@ -60,6 +71,11 @@ topics, so the lessons are the 3 stages of that one example:
    `Member` superclass, `extends`
 3. **Inheritance in Action** — what a subclass inherits automatically
    vs. what stays unique to it
+4. **Try It Yourself** — interactive simulator: pick `Student`/`Staff`,
+   call inherited/own methods, see each call tagged with where it's
+   actually defined (`Member` vs. the subclass)
+5. **Final Quiz** — 3 questions recapping the whole course, with a live
+   score
 
 ### Phases
 
@@ -67,14 +83,18 @@ topics, so the lessons are the 3 stages of that one example:
   images (all one inheritance example, in 3 stages — see data model).
 - [x] **Phase 2 — Scaffold site**: skipped separate scaffolding — built
   directly into Phase 3 since the site is one file.
-- [x] **Phase 3 — Write lesson sections**: all 3 sections written into
-  `index.html`, in slide order, matching the chosen visual design.
+- [x] **Phase 3 — Write lesson sections**: all 3 lesson sections written
+  into `index.html`, in slide order, matching the chosen visual design.
 - [x] **Phase 4 — Wire navigation**: stepper nav + Prev/Next buttons
   wired via JS section show/hide.
-- [ ] **Phase 5 — Review pass**: open in browser, click through all
-  nav paths (stepper clicks, Prev/Next, first/last section states),
-  proofread lesson content against the slides for accuracy.
+- [x] **Phase 5 — Add interactivity**: inline check-in question per
+  section, the "Try It Yourself" simulator section, and the 3-question
+  final quiz with live scoring. Verified in a headless browser (all nav
+  paths, checkin lock/feedback, simulator state, quiz scoring to 3/3).
+- [ ] **Phase 6 — Content review pass**: proofread all lesson prose and
+  check-in/quiz question wording against the original slides for
+  accuracy (not yet done — current content was drafted directly from
+  slide review, not re-checked since).
 
-Open question, still unresolved: whether to add a small practice
-exercise/quiz per section beyond what's on the slides — not done yet,
-current sections stick to expanding the slide content only.
+Resolved: the earlier open question (whether to add exercises/quizzes)
+is done — check-in questions per section plus the final quiz.
