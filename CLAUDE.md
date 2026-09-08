@@ -28,6 +28,19 @@ authored content derived from the slides the user provides in-session.
   (or a trivial static server).
 - **Testing**: no automated tests for a static content site; verify by
   opening pages in a browser and checking links/navigation manually.
+- **Visual design** (chosen from 3 mocked-up directions — "Modern
+  Technical"):
+  - Fonts: `IBM Plex Sans` (headings/body), `IBM Plex Mono` (code) via
+    Google Fonts, `system-ui`/`Consolas` fallbacks.
+  - Palette: light cool-gray background (`oklch(0.985 0.004 240)`),
+    near-black cool text (`oklch(0.22 0.006 240)`), teal accent
+    (`oklch(0.55 0.11 195)`), dark code blocks (`oklch(0.16 0.01 240)`
+    bg) with soft-rounded corners (~6-10px).
+  - Layout: top bar with course title + a horizontal numbered "stepper"
+    nav across the 3 lessons (filled circle + teal underline for the
+    current step); content column max-width ~720px, centered; recap in
+    a tinted teal card; Prev/Next row at the bottom, Next styled as a
+    solid teal button.
 
 ## Feature Plan
 
