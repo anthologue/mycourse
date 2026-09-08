@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java OOP for Beginners</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: oklch(0.985 0.004 240);
+    --text: oklch(0.22 0.006 240);
+    --text-muted: oklch(0.5 0.006 240);
+    --border: oklch(0.9 0.006 240);
+    --accent: oklch(0.55 0.11 195);
+    --accent-tint: oklch(0.96 0.008 195);
+    --code-bg: oklch(0.16 0.01 240);
+    --code-text: oklch(0.9 0.03 195);
+    --inline-code-bg: oklch(0.93 0.01 195);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  code, pre { font-family: 'IBM Plex Mono', Consolas, monospace; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: oklch(0.45 0.11 195); }
+
+  .topbar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 56px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .brand span { color: var(--accent); }
+
+  .stepper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    font-size: 13px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+  }
+
+  .step .num {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid oklch(0.75 0.01 240);
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step.active {
+    color: var(--text);
+    font-weight: 600;
+    border-bottom-color: var(--accent);
+  }
+
+  .step.active .num {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+  }
+
+  .lesson { display: none; }
+  .lesson.active { display: block; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0 0 20px;
+  }
+
+  h2 {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 36px 0 14px;
+  }
+
+  p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: oklch(0.32 0.006 240);
+    margin: 0 0 16px;
+  }
+
+  ul {
+    font-size: 15px;
+    line-height: 1.8;
+    color: oklch(0.28 0.006 240);
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  code {
+    background: var(--inline-code-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-size: 13.5px;
+    line-height: 1.65;
+    padding: 20px 22px;
+    border-radius: 8px;
+    margin: 0 0 30px;
+    overflow-x: auto;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  .recap {
+    background: var(--accent-tint);
+    padding: 22px 26px;
+    border-radius: 10px;
+    margin: 36px 0 40px;
+  }
+
+  .recap-title {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: oklch(0.45 0.1 195);
+    margin-bottom: 10px;
+  }
+
+  .lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+
+  .lesson-nav button {
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    color: var(--text-muted);
+  }
+
+  .lesson-nav button:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  .lesson-nav .next-btn {
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+  }
+
+  .lesson-nav .next-btn:disabled {
+    background: oklch(0.85 0.01 240);
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Java OOP <span>for Beginners</span></div>
+  <nav class="stepper" id="stepper"></nav>
+</div>
+
+<main>
+
+  <section class="lesson" data-title="The Problem">
+    <div class="eyebrow">01 / 03</div>
+    <h1>Why We Need Inheritance</h1>
+    <p>Real programs often need to represent several kinds of objects that are mostly alike. Take a library system: it might serve two types of members, students and staff. Both need a name, an ID, a department, and a borrowing quota — but a student also has a class group, and a staff member has a designation.</p>
+
+    <h2>The Naive Approach</h2>
+    <p>The most straightforward way to model this is to write a separate class for each kind of member, giving each one every field it needs:</p>
+    <pre><code>public class Student {
+    private String name;
+    private String id;
+    private String department;
+    private int quota;
+    private String studentClass;
+}
+
+public class Staff {
+    private String name;
+    private String id;
+    private String department;
+    private int quota;
+    private String designation;
+}</code></pre>
+    <p>It works, but look closely: four of the five fields in <code>Student</code> and <code>Staff</code> are identical. Any shared behavior — like a method to set these basics or check the quota — would have to be written and maintained twice.</p>
+
+    <div class="recap">
+      <div class="recap-title">Recap</div>
+      <ul>
+        <li>Related classes often share most of their data and behavior.</li>
+        <li>Writing each class independently duplicates that shared part.</li>
+        <li>Duplication makes the code harder to keep consistent as it grows.</li>
+      </ul>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="prev-btn" type="button">&larr; Course start</button>
+      <button class="next-btn" type="button">Next: Superclasses &amp; Subclasses &rarr;</button>
+    </div>
+  </section>
+
+  <section class="lesson" data-title="Superclass &amp; Subclass">
+    <div class="eyebrow">02 / 03</div>
+    <h1>Superclasses and Subclasses</h1>
+    <p>A more efficient way is to pull every shared characteristic into one class, called a <strong>superclass</strong>, and let the more specific classes build on top of it as <strong>subclasses</strong>. For the library example, that shared class is <code>Member</code>: it holds the name, ID, department, and quota that every member needs, along with the methods that work on them.</p>
+
+    <h2>Defining the Superclass</h2>
+    <pre><code>public class Member {
+    private String name;
+    private String id;
+    private String department;
+    private int quota;
+
+    public void setBasics(String name, String id, String department) { ... }
+    public void setQuota(int quota) { ... }
+    public int getQuota() { ... }
+}</code></pre>
+
+    <h2>Extending It</h2>
+    <p><code>Student</code> and <code>Staff</code> then become subclasses of <code>Member</code> using the <code>extends</code> keyword, and each only needs to declare the one field that makes it different:</p>
+    <pre><code>public class Student extends Member {
+    private String studentClass;
+}
+
+public class Staff extends Member {
+    private String designation;
+}</code></pre>
+
+    <div class="recap">
+      <div class="recap-title">Recap</div>
+      <ul>
+        <li>A superclass (or "parent class") holds characteristics common to several related classes.</li>
+        <li>A subclass (or "child class") is defined with <code>extends</code>.</li>
+        <li>Each subclass keeps only what makes it unique — the rest lives in the superclass, once.</li>
+      </ul>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="prev-btn" type="button">&larr; Previous</button>
+      <button class="next-btn" type="button">Next: Inheritance in Action &rarr;</button>
+    </div>
+  </section>
+
+  <section class="lesson" data-title="Inheritance in Action">
+    <div class="eyebrow">03 / 03</div>
+    <h1>What Gets Inherited</h1>
+    <p>Once <code>Student</code> and <code>Staff</code> are defined as subclasses of <code>Member</code>, they automatically <strong>inherit</strong> every attribute and method that <code>Member</code> defines — nothing needs to be redeclared. On top of that inherited set, each subclass still has the individual fields it defined for itself.</p>
+
+    <h2>Using an Inherited Method</h2>
+    <p>Even though <code>setBasics</code> and <code>setQuota</code> are written in <code>Member</code>, they're called directly on a <code>Student</code> object:</p>
+    <pre><code>Student student = new Student();
+student.setBasics("Alice", "S1001", "IT");  // inherited from Member
+student.setQuota(5);                         // inherited from Member
+// studentClass is unique to Student, not part of Member</code></pre>
+    <p>The same is true for a <code>Staff</code> object — it reuses those same inherited methods, while <code>designation</code> stays specific to <code>Staff</code>.</p>
+
+    <div class="recap">
+      <div class="recap-title">Recap</div>
+      <ul>
+        <li>A subclass automatically has all of its superclass's attributes and methods.</li>
+        <li>Inherited members are used as-is, with no need to rewrite them.</li>
+        <li>A subclass can still add attributes and methods that are entirely its own.</li>
+        <li>This is how inheritance removes the duplication seen in the naive approach.</li>
+      </ul>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="prev-btn" type="button">&larr; Previous</button>
+      <button class="next-btn" type="button" disabled>You've completed the course</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const sections = Array.from(document.querySelectorAll('.lesson'));
+  const stepper = document.getElementById('stepper');
+  let current = 0;
+
+  sections.forEach((section, i) => {
+    const step = document.createElement('button');
+    step.type = 'button';
+    step.className = 'step';
+    step.innerHTML = `<span class="num">${i + 1}</span>${section.dataset.title}`;
+    step.addEventListener('click', () => showSection(i));
+    stepper.appendChild(step);
+  });
+
+  const steps = Array.from(stepper.querySelectorAll('.step'));
+
+  sections.forEach((section, i) => {
+    const prevBtn = section.querySelector('.prev-btn');
+    const nextBtn = section.querySelector('.next-btn');
+    prevBtn.addEventListener('click', () => { if (i > 0) showSection(i - 1); });
+    nextBtn.addEventListener('click', () => { if (i < sections.length - 1) showSection(i + 1); });
+    if (i === 0) prevBtn.disabled = true;
+  });
+
+  function showSection(index) {
+    current = index;
+    sections.forEach((section, i) => section.classList.toggle('active', i === index));
+    steps.forEach((step, i) => step.classList.toggle('active', i === index));
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  showSection(0);
+</script>
+
+</body>
+</html>
